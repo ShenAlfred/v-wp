@@ -16,6 +16,7 @@
 
 <style>
     html{
-        background: red;
+        background: #ccc;
+        font-size: 24px;
     }
 </style>

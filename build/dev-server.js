@@ -1,7 +1,7 @@
 // 引入必要的模块
 var express = require('express')
 var webpack = require('webpack')
-var config = require('./webpack.config')
+var config = require('./webpack.dev.conf')
 
 // 创建一个express实例
 var app = express()
@@ -18,8 +18,19 @@ var devMiddleware = require('webpack-dev-middleware')(compiler, {
     }
 })
 
+// 使用 webpack-hot-middleware 中间件
+var hotMiddleware = require('webpack-hot-middleware')(compiler);
+
+compiler.plugin('compilation', function(compilation) {
+    compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {
+        hotMiddleware.publish({ action: 'reload' })
+        cb()
+    })
+})
+
 // 注册中间件
 app.use(devMiddleware)
+app.use(hotMiddleware)
 
 // 监听 8888端口，开启服务器
 app.listen(8888, function (err) {
