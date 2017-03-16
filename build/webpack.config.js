@@ -37,6 +37,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
+            title: 'My Webpack',
             filename: '../index.html',
             template: path.resolve(__dirname, '../app/index/index.html'),
             inject: true

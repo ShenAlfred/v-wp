@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-for="n in 10">div</div>
+        <div v-for="n in 10">{{ msg }}</div>
     </div>
 </template>
 
